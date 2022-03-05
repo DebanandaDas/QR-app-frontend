@@ -1,0 +1,30 @@
+.navbar-brand{
+    color: white;
+    
+    font-weight: bold;
+    font-size:x-large;
+}
+
+.nav-logo{
+     margin-left: 26%; 
+}
+.login-btn{
+    margin-left : 183px;
+}
+.nav-link{
+    color: white
+}
+.navbar > .container-fluid, .navbar > .container-sm, .navbar > .container-md, .navbar > .container-lg, .navbar > .container-xl, .navbar > .container-xxl {
+    display: flex;
+    flex-wrap: inherit;
+    align-items: center;
+    justify-content: normal;
+}
+.navbar{
+    
+    position: sticky;
+}
+.nav-clg-name{
+    margin-left: 15px;
+    color: white;
+}

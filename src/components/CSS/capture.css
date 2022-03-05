@@ -1,0 +1,13 @@
+.container{
+    width: 60%;
+
+}
+
+.cam-box{
+    width: 200px;
+    height:150px;
+}
+
+.react-html5-camera-photo>video {
+    width: 594px;
+}
