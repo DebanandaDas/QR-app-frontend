@@ -1,27 +1,35 @@
 import React, { useState, useRef } from "react";
 import "./CSS/addStudent.css";
 import addStudentImg from "../public/addStudent.png";
+import axios from 'axios';
 
 const AddStudent = () => {
   const [Image , setImage] = useState("");
   const [gradeCards, setGradeCards] = useState([]);
-  const [student, setStudent]= useState({username:"",password:"",name:"", roll:"",regNo:"",department:"",address:""});        
+  const [studentState, setStudentState]= useState({username:"",password:"",name:"", roll:"",regNo:"",department:"",address:""});        
     
   const createStudent= async (e)=>{
     e.preventDefault();
     const fdata= new FormData();
-    fdata.append("student", student);
-    //fdata.append("photo", Image);
+    
+    /* fdata.append("student.username", student.username);
+    fdata.append("student.password", student.password);
+    fdata.append("student.name", student.name);
+    fdata.append("student.roll", student.roll);
+    fdata.append("student.regNo", student.regNo);
+    fdata.append("student.department", student.department);
+    fdata.append("student.address", student.address); */
+    fdata.append("photo", Image);
     //fdata.append("gradecards", gradeCards);
     try{
-    const res= await fetch("https://qrcodes-backend.herokuapp.com/students/",{
+    const res= await fetch(`http://localhost:5000/students?username=${studentState.username}&name=${studentState.name}&roll=${studentState.roll}&regNo=${studentState.regNo}&department=${studentState.department}&address=${studentState.address}&password=${studentState.password}`,{
       method: "POST",
-      headers: {
-        "Content-Type": "multipart/form-data",
-        "Accept": "application/json",
-      },
-      body: fdata
-    })
+      credentials: 'include',
+      
+      body: fdata,
+
+      }); 
+    
     const data= res.json();
     if(res.status===201)
     {
@@ -31,9 +39,9 @@ const AddStudent = () => {
     {
       console.log(data);
     }
-    else
+    else if(res.status===500)
     {
-      window.alert("failed");
+      window.alert("not auth");
     }
   }
   catch(err)
@@ -66,25 +74,25 @@ const AddStudent = () => {
               <label for="inputEmail4" className="form-label">
                 Name
               </label>
-              <input type="text" className="form-control" id="inputEmail4" onChange={e=>{ setStudent((pre)=>({ ...pre,name : e.target.value}))}} />
+              <input type="text" className="form-control" id="inputEmail4" onChange={e=>{ setStudentState((pre)=>({ ...pre,name : e.target.value}))}} />
             </div>
             <div className="col-md-6">
               <label for="inputPassword4" className="form-label">
                 Department
               </label>
-              <input type="text" className="form-control" id="inputPassword4" onChange={e=>{ setStudent((pre)=>({ ...pre,department : e.target.value}))}} />
+              <input type="text" className="form-control" id="inputPassword4" onChange={e=>{ setStudentState((pre)=>({ ...pre,department : e.target.value}))}} />
             </div>
             <div className="col-md-6">
               <label for="inputEmail4" className="form-label">
                 Registration Number
               </label>
-              <input type="text" className="form-control" id="inputEmail4" onChange={e=>{ setStudent((pre)=>({ ...pre, regNo : e.target.value}))}}/>
+              <input type="text" className="form-control" id="inputEmail4" onChange={e=>{ setStudentState((pre)=>({ ...pre, regNo : e.target.value}))}}/>
             </div>
             <div className="col-md-6">
               <label for="inputPassword4" className="form-label">
                 Roll Number
               </label>
-              <input type="text" className="form-control" id="inputPassword4" onChange={e=>{ setStudent((pre)=>({ ...pre, roll : e.target.value}))}}/>
+              <input type="text" className="form-control" id="inputPassword4" onChange={e=>{ setStudentState((pre)=>({ ...pre, roll : e.target.value}))}}/>
             </div>
             <div className="col-12">
               <label for="inputAddress" className="form-label">
@@ -95,7 +103,7 @@ const AddStudent = () => {
                 className="form-control"
                 id="inputAddress"
                 placeholder="Permanent Address"
-                onChange={e=>{ setStudent((pre)=>({ ...pre,address : e.target.value}))}}
+                onChange={e=>{ setStudentState((pre)=>({ ...pre,address : e.target.value}))}}
               />
             </div>
             <div className="col-12">
@@ -107,7 +115,7 @@ const AddStudent = () => {
                 className="form-control"
                 id="inputAddress"
                 placeholder="username"
-                onChange={e=>{ setStudent((pre)=>({ ...pre,username : e.target.value}))}}
+                onChange={e=>{ setStudentState((pre)=>({ ...pre,username : e.target.value}))}}
               />
             </div>
             <div className="col-12">
@@ -119,7 +127,7 @@ const AddStudent = () => {
                 className="form-control"
                 id="inputAddress"
                 placeholder="password"
-                onChange={e=>{ setStudent((pre)=>({ ...pre,password : e.target.value}))}}
+                onChange={e=>{ setStudentState((pre)=>({ ...pre,password : e.target.value}))}}
               />
             </div>
             <div className="col-12">
@@ -182,7 +190,7 @@ const AddStudent = () => {
             </div>
           </form>
            <div>
-            {student.name}// {student.department}//{student.regNo}
+            {studentState.name}// {studentState.department}//{studentState.regNo}
           </div> 
         </div>
       </div>

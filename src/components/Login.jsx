@@ -19,7 +19,7 @@ const Login = () => {
       e.preventDefault();
       try{
 
-        const res = await fetch('https://qrcodes-backend.herokuapp.com/admin/login', {
+        const res = await fetch('http://localhost:5000/admin/login', {
             method:"POST",
             credentials: 'include',
             headers:{
