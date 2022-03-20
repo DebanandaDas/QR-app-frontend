@@ -20,7 +20,6 @@ import Capture from "./components/Capture";
 import ShowStudent from "./components/ShowStudent";
 import ModifyStud from "./components/ModifyStud";
 
-
 export const UserContext = createContext();
 
 function App() {
