@@ -18,12 +18,17 @@ const NavBar = () => {
         style={myCSS}
       >
         <div className="container-fluid">
-           <NavLink className=" nav-logo" to="/">
+           <NavLink className="nav-logo" to="/">
             <img src={logo} alt="logo" />
           </NavLink>
-          <NavLink className="navbar-brand nav-clg-name" to="/">
+          <NavLink className="navbar-brand nav-clg-name nav-clg-name-lg" to="/">
             National Institute of Technology,Durgapur
           </NavLink> 
+          <div className="nav-clg-name-sm">
+          <NavLink className="navbar-brand nav-clg-name  " to="/">
+            NIT Durgapur
+          </NavLink> 
+          </div>
           
           <button
             className="navbar-toggler"

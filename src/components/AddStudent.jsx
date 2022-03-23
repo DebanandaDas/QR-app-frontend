@@ -3,37 +3,169 @@ import "./CSS/addStudent.css";
 import addStudentImg from "../public/addStudent.png";
 import axios from 'axios';
 
+
+
 const AddStudent = () => {
   const [Image , setImage] = useState("");
-  const [gradeCards, setGradeCards] = useState([]);
+  const [sem1, setSem1] = useState();
+  const [sem2, setSem2] = useState();
+  const [sem3, setSem3] = useState();
+  const [sem4, setSem4] = useState();
+  const [sem5, setSem5] = useState();
+  const [sem6, setSem6] = useState();
+  const [sem7, setSem7] = useState();
+  const [sem8, setSem8] = useState();
   const [studentState, setStudentState]= useState({username:"",password:"",name:"", roll:"",regNo:"",department:"",address:""});        
     
+  const addImage= async (id)=>
+  {
+    const fdata= new FormData();
+    fdata.append('photo',Image);
+    try{
+      const res= await fetch(`http://localhost:5000/students/putphoto/${id}`,{
+        method: "PUT",
+        credentials: 'include',
+        
+        body: fdata,
+  
+        });
+        const data=  await res.json();
+        if(data.success=== true)
+        {
+          window.alert("image added");
+        }
+        else{
+          window.alert("image adding failed");
+        }
+
+
+      }
+      catch(err)
+      {
+        console.error(err);
+      }
+
+  }
+
+  const addGradeCardsUtil= async (id,semno)=>
+  {
+
+    const fdata= new FormData();
+    if(semno===1)
+    {
+      fdata.append('gradecard',sem1);
+    }
+    else if(semno===2)
+    {
+      fdata.append('gradecard',sem2);
+    }
+    else if(semno===3)
+    {
+      fdata.append('gradecard',sem3);
+    }
+    else if(semno===4)
+    {
+      fdata.append('gradecard',sem4);
+    }
+    else if(semno===5)
+    {
+      fdata.append('gradecard',sem5);
+    }
+    else if(semno===6)
+    {
+      fdata.append('gradecard',sem6);
+    }
+    else if(semno===7)
+    {
+      fdata.append('gradecard',sem7);
+    }
+    else if(semno===8)
+    {
+      fdata.append('gradecard',sem8);
+    }
+    
+    try{
+      const res= await fetch(`http://localhost:5000/students/putgradecard/${id}/${semno}`,{
+        method: "PUT",
+        credentials: 'include',
+        
+        body: fdata,
+  
+        });
+        const data= await res.json();
+        if(data.success=== true)
+        {
+          window.alert(`sem${semno} added`);
+        }
+        else{
+          window.alert(`sem${semno} adding failed`);
+        }
+
+
+      }
+      catch(err)
+      {
+        console.error(err);
+      }
+
+  }
+  const addGradeCards= async (id)=>
+  {
+    if(sem1)
+    {
+      addGradeCardsUtil(id, 1);
+    }
+    if(sem2)
+    {
+      addGradeCardsUtil(id, 2);
+    }
+    if(sem3)
+    {
+      addGradeCardsUtil(id, 3);
+    }
+    if(sem4)
+    {
+      addGradeCardsUtil(id, 4);
+    }
+    if(sem5)
+    {
+      addGradeCardsUtil(id, 5);
+    }
+    if(sem6)
+    {
+      addGradeCardsUtil(id, 6);
+    }
+    if(sem7)
+    {
+      addGradeCardsUtil(id, 7);
+    }
+    if(sem8)
+    {
+      addGradeCardsUtil(id, 8);
+    }
+    
+
+  }
+
   const createStudent= async (e)=>{
     e.preventDefault();
-    const fdata= new FormData();
     
-    /* fdata.append("student.username", student.username);
-    fdata.append("student.password", student.password);
-    fdata.append("student.name", student.name);
-    fdata.append("student.roll", student.roll);
-    fdata.append("student.regNo", student.regNo);
-    fdata.append("student.department", student.department);
-    fdata.append("student.address", student.address); */
-    fdata.append("photo", Image);
-    //fdata.append("gradecards", gradeCards);
     try{
-    const res= await fetch(`http://localhost:5000/students?username=${studentState.username}&name=${studentState.name}&roll=${studentState.roll}&regNo=${studentState.regNo}&department=${studentState.department}&address=${studentState.address}&password=${studentState.password}`,{
+    const res= await fetch(`http://localhost:5000/students/createFromQueryTextParams?username=${studentState.username}&name=${studentState.name}&roll=${studentState.roll}&regNo=${studentState.regNo}&department=${studentState.department}&address=${studentState.address}&password=${studentState.password}`,{
       method: "POST",
       credentials: 'include',
       
-      body: fdata,
+      body: JSON.stringify({message:"adding with query params"}),
 
       }); 
     
-    const data= res.json();
+    const data= await res.json();
     if(res.status===201)
     {
-      window.alert("added successfully");
+      window.alert("added the text successfully");
+      console.log(data.id);
+       await addImage(data.id);
+      await addGradeCards(data.id);
     }
     else if(res.status === 400)
     {
@@ -43,6 +175,7 @@ const AddStudent = () => {
     {
       window.alert("not auth");
     }
+
   }
   catch(err)
   {
@@ -137,49 +270,49 @@ const AddStudent = () => {
               <label className="input-group-text" for="inputGroupFile01">
                 Semester 1
               </label>
-              <input type="file" className="form-control" id="inputGroupFile01" onChange={e=> setGradeCards([...gradeCards,e.target.files[0]])}/>
+              <input type="file" className="form-control" id="inputGroupFile01" onChange={e=> setSem1(e.target.files[0])}/>
             </div>
             <div className="col-6 input-group mb-3 ">
               <label className="input-group-text" for="inputGroupFile01">
                 Semester 2
               </label>
-              <input type="file" className="form-control" id="inputGroupFile01" onChange={e=> setGradeCards([...gradeCards,e.target.files[0]])} />
+              <input type="file" className="form-control" id="inputGroupFile01" onChange={e=> setSem2(e.target.files[0])} />
             </div>
             <div className="col-6 input-group mb-3 ">
               <label className="input-group-text" for="inputGroupFile01">
                 Semester 3
               </label>
-              <input type="file" className="form-control" id="inputGroupFile01" onChange={e=> setGradeCards([...gradeCards,e.target.files[0]])}/>
+              <input type="file" className="form-control" id="inputGroupFile01" onChange={e=> setSem3(e.target.files[0])}/>
             </div>
             <div className="col-6 input-group mb-3 ">
               <label className="input-group-text" for="inputGroupFile01">
                 Semester 4
               </label>
-              <input type="file" className="form-control" id="inputGroupFile01" onChange={e=> setGradeCards([...gradeCards,e.target.files[0]])} />
+              <input type="file" className="form-control" id="inputGroupFile01" onChange={e=> setSem4(e.target.files[0])} />
             </div>
             <div className="col-6 input-group mb-3 ">
               <label className="input-group-text" for="inputGroupFile01">
                 Semester 5
               </label>
-              <input type="file" className="form-control" id="inputGroupFile01" onChange={e=> setGradeCards([...gradeCards,e.target.files[0]])} />
+              <input type="file" className="form-control" id="inputGroupFile01" onChange={e=> setSem5(e.target.files[0])} />
             </div>
             <div className="col-6 input-group mb-3 ">
               <label className="input-group-text" for="inputGroupFile01">
                 Semester 6
               </label>
-              <input type="file" className="form-control" id="inputGroupFile01" onChange={e=> setGradeCards([...gradeCards,e.target.files[0]])} />
+              <input type="file" className="form-control" id="inputGroupFile01" onChange={e=> setSem6(e.target.files[0])}/>
             </div>
             <div className="col-6 input-group mb-3 ">
               <label className="input-group-text" for="inputGroupFile01">
                 Semester 7
               </label>
-              <input type="file" className="form-control" id="inputGroupFile01" onChange={e=> setGradeCards([...gradeCards,e.target.files[0]])} />
+              <input type="file" className="form-control" id="inputGroupFile01" onChange={e=> setSem7(e.target.files[0])} />
             </div>
             <div className="col-6 input-group mb-3 ">
               <label className="input-group-text" for="inputGroupFile01">
                 Semester 8
               </label>
-              <input type="file" className="form-control" id="inputGroupFile01" onChange={e=> setGradeCards([...gradeCards,e.target.files[0]])}/>
+              <input type="file" className="form-control" id="inputGroupFile01" onChange={e=> setSem8(e.target.files[0])}/>
             </div>
 
 

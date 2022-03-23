@@ -1,7 +1,10 @@
 import React from "react";
 import "./CSS/login.css";
 import "./CSS/search.css";
+import { useNavigate } from "react-router-dom";
+
 const ShowGetStud = () => {
+  const navigate= useNavigate();
   return (
     <section className="sign-in" style={{ "place-items": "unset" }}>
       <div className="container mt-5">
@@ -19,7 +22,10 @@ const ShowGetStud = () => {
                 placeholder="Reg No."
               />
             </div>
-            <button type="submit" className="btn btn-primary mb-2">
+            <button type="submit" className="btn btn-primary mb-2" onClick={(e)=>{
+              e.preventDefault();
+              navigate("/showStudent");
+            }} >
               Show Student
             </button>
           </form>
