@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./CSS/addStudent.css";
 import "./CSS/showStud.css";
 import addStudentImg from "../public/addStudent.png";
 import qrPlaceholder from "../public/qrPlaceholder.png";
+import { UserContext } from "../App";
 
-const ShowStudent = (prop) => {
+const ShowStudent = (props) => {
   const [student, setStudent] = useState({
     username: "",
     password: "",
@@ -14,11 +15,12 @@ const ShowStudent = (prop) => {
     department: "",
     address: "",
   });
+  const {regNmbr,setRegNmbr}= useContext(UserContext);
   const [loaded, setLoaded] = useState(false);
 
-  const getStudent = async () => {
+  const getStudent = async (id) => {
     try {
-      const res = await fetch(`http://localhost:5000/students/regNo/18U10288`, {
+      const res = await fetch(`http://localhost:5000/students/regNo/${id}`, {
         method: "GET",
 
         headers: {
@@ -34,7 +36,13 @@ const ShowStudent = (prop) => {
     }
   };
   useEffect(() => {
-    getStudent();
+    if(props.id)
+    {
+    getStudent(props.id);
+    }
+    else{
+      getStudent(regNmbr);
+    }
   }, []);
 
   return (

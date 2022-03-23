@@ -1,10 +1,12 @@
-import React from "react";
+import React,{useContext} from "react";
 import "./CSS/login.css";
 import "./CSS/search.css";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../App";
 
 const ShowGetStud = () => {
   const navigate= useNavigate();
+  const {regNmbr,setRegNmbr}= useContext(UserContext);
   return (
     <section className="sign-in" style={{ "place-items": "unset" }}>
       <div className="container mt-5">
@@ -20,6 +22,9 @@ const ShowGetStud = () => {
                 className="form-control"
                 id="inputPassword2"
                 placeholder="Reg No."
+                onChange={(e)=>{
+                  setRegNmbr(e.target.value);
+                }}
               />
             </div>
             <button type="submit" className="btn btn-primary mb-2" onClick={(e)=>{

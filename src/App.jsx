@@ -19,13 +19,15 @@ import ShowStudent from "./components/ShowStudent";
 import ModifyStud from "./components/ModifyStud";
 import Home from "./components/Home";
 
+
 export const UserContext = createContext();
 
 function App() {
   const [isAdmin, setIsAdmin] = useState(false);
+  const [regNmbr, setRegNmbr]=useState();
 
   return (
-    <UserContext.Provider value={{ isAdmin, setIsAdmin }}>
+    <UserContext.Provider value={{ isAdmin, setIsAdmin,regNmbr,setRegNmbr }}>
       <div className="app-container">
         <NavBar />
         <Routes>
@@ -45,6 +47,7 @@ function App() {
           <Route path="/showStudent" element={<ShowStudent />} />
 
           <Route path="/2FA" element={<Capture />} />
+          
         </Routes>
       </div>
     </UserContext.Provider>
