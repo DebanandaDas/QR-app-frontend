@@ -18,7 +18,7 @@ var captureBtn = {
   background: '#f7473587',
   position: 'absolute',
   top: '85%',
-  left: '15%',
+  left: '50%',
   transform: 'translate(-50%, -50%)',
   cursor: 'pointer'
 };

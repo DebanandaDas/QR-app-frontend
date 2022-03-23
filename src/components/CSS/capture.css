@@ -7,7 +7,15 @@
     width: 200px;
     height:150px;
 }
+.auth-vid-container{
+    padding-left:13%;
+}
 
-.react-html5-camera-photo>video {
-    width: 594px;
+@media (min-width:0px) and (max-width: 540px){
+    .container{
+        width: 85%;
+    }
+    .auth-vid-container{
+        padding-left:0%;
+    }
 }
