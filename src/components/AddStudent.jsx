@@ -47,6 +47,7 @@ const AddStudent = () => {
       {
         console.error(err);
       }
+      return;
 
   }
 
@@ -116,38 +117,38 @@ const AddStudent = () => {
   {
     if(sem1)
     {
-      addGradeCardsUtil(id, 1);
+      await addGradeCardsUtil(id, 1);
     }
     if(sem2)
     {
-      addGradeCardsUtil(id, 2);
+      await addGradeCardsUtil(id, 2);
     }
     if(sem3)
     {
-      addGradeCardsUtil(id, 3);
+     await addGradeCardsUtil(id, 3);
     }
     if(sem4)
     {
-      addGradeCardsUtil(id, 4);
+     await addGradeCardsUtil(id, 4);
     }
     if(sem5)
     {
-      addGradeCardsUtil(id, 5);
+      await addGradeCardsUtil(id, 5);
     }
     if(sem6)
     {
-      addGradeCardsUtil(id, 6);
+     await addGradeCardsUtil(id, 6);
     }
     if(sem7)
     {
-      addGradeCardsUtil(id, 7);
+     await addGradeCardsUtil(id, 7);
     }
     if(sem8)
     {
-      addGradeCardsUtil(id, 8);
+     await addGradeCardsUtil(id, 8);
     }
     
-
+    return;
   }
 
   const createStudent= async (e)=>{

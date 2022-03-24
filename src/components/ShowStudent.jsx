@@ -55,14 +55,14 @@ const ShowStudent = (props) => {
               <div className="img-div">
                 <img
                   className="img-box"
-                  src={student.photo ? student.photo.url : addStudentImg}
+                  src={loaded && student.photo ? student.photo.url : addStudentImg}
                   alt="studentImg"
                 />
               </div>
               <div className="img-div qr-div">
                 <img
                   className="img-box "
-                  src={student.qrcode ? student.qrcode.url : qrPlaceholder}
+                  src={ loaded && student.qrcode ? student.qrcode.url : qrPlaceholder}
                   alt="QRImg"
                 />
               </div>
