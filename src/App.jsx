@@ -18,6 +18,7 @@ import Capture from "./components/Capture";
 import ShowStudent from "./components/ShowStudent";
 import ModifyStud from "./components/ModifyStud";
 import Home from "./components/Home";
+import AddedStudentPreview from "./components/AddedStudentPreview";
 
 
 export const UserContext = createContext();
@@ -47,6 +48,7 @@ function App() {
           <Route path="/showStudent" element={<ShowStudent />} />
 
           <Route path="/2FA" element={<Capture />} />
+          <Route path="/preview" element={<AddedStudentPreview />} />
           
         </Routes>
       </div>

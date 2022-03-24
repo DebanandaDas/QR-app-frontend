@@ -38,6 +38,7 @@ const ShowStudent = (props) => {
   useEffect(() => {
     if(props.id)
     {
+      console.log(`inside if useEffect ${props.id}`);
     getStudent(props.id);
     }
     else{

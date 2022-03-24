@@ -1,11 +1,14 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useContext } from "react";
 import "./CSS/addStudent.css";
 import addStudentImg from "../public/addStudent.png";
-import axios from 'axios';
+import { UserContext } from "../App";
+import { useNavigate } from "react-router-dom";
 
 
 
 const AddStudent = () => {
+  const navigate = useNavigate();
+  const {regNmbr,setRegNmbr}=useContext(UserContext);
   const [Image , setImage] = useState("");
   const [sem1, setSem1] = useState();
   const [sem2, setSem2] = useState();
@@ -166,6 +169,10 @@ const AddStudent = () => {
       console.log(data.id);
        await addImage(data.id);
       await addGradeCards(data.id);
+      setRegNmbr(studentState.regNo);
+      navigate('/preview');
+
+
     }
     else if(res.status === 400)
     {
