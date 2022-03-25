@@ -68,7 +68,7 @@ function ImageCapture(props) {
     context.drawImage(playerRef.current, 0, 0, imageWidth, imageHeight);
 
     if (onCapture) {
-      var webPData = canvasRef.current.toDataURL('image/webp');
+      var webPData = canvasRef.current.toDataURL();
       canvasRef.current.toBlob(function (blob) {
         onCapture({
           blob: blob,

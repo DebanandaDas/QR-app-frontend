@@ -1,7 +1,9 @@
-import React from 'react';
+import React,{useContext} from 'react';
 import { NavLink } from "react-router-dom";
-
+import { UserContext } from '../App';
 const Home = () => {
+  const {authImg}=useContext(UserContext);
+  console.log(`home's : ${authImg}`);
   return (
     <section className="sign-in" style={{ "place-items": "unset" }}>
       <div className="container mt-5">

@@ -1,10 +1,14 @@
-import { React, useEffect, useState } from "react";
+import { React, useEffect, useState,useContext } from "react";
 import myImg from "../public/myImg.jpg";
 import "./CSS/report2.css";
 import {  useNavigate } from "react-router-dom";
+import { UserContext } from "../App";
 
 
 const Report2 = () => {
+  const {authImg,setAuthImg} =useContext(UserContext);
+  const b64image=window.localStorage.getItem('b64image');
+  console.log(`inside report : ${b64image}`);
   var username = new URLSearchParams(window.location.search).get("username");
   var password = new URLSearchParams(window.location.search).get("password");
   const [loaded, setLoaded] = useState(false);
@@ -13,14 +17,19 @@ const Report2 = () => {
   const navigate = useNavigate();
   const getData = async () => {
     try {
+      /* const fdata= new FormData();
+      fdata.append('b64image',b64image); */
       const res = await fetch(
-        `https://qrcodes-backend.herokuapp.com/students/verify?username=${username}&password=${password}`,
+        `http://localhost:5000/students/verify?username=${username}&password=${password}`,
         {
-          method: "GET",
+
+          method: "POST",
           headers: {
-            Accept: "appllication/json",
-            "Content-Type": "application/json",
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
           },
+
+          body: JSON.stringify({b64image:`${b64image}`}),
         }
       );
 
@@ -28,8 +37,15 @@ const Report2 = () => {
       console.log(data);
       if (res.status === 500) {
         setIsAuthentic(false);
-        setLoaded(true);
-      } else if (res.status === 200) {
+        setLoaded(true);}
+        else if(res.status===405)
+        {
+          setIsAuthentic(false);
+          setLoaded(true);
+          console.log(data.message);
+          window.alert("faces are not matching");
+        }
+       else if (res.status === 200) {
         try {
           const res2 = await fetch(`http://qrcodes-backend.herokuapp.com/students/${data.id}`, {
             method: "GET",
@@ -47,10 +63,10 @@ const Report2 = () => {
                       regno: data2.student.regNo,
                       rollno: data2.student.roll,
                       photo: data2.student.photo.url,
-                      sem1:data2.student.gradeCards[0].url,
-                      sem2:data2.student.gradeCards[1].url,
-                      sem3:data2.student.gradeCards[2],
-                      sem4:data2.student.gradeCards[3]});
+                      sem1: (data2.student.gradeCards[0])? data2.student.gradeCards[0].url :"",
+                      sem2: (data2.student.gradeCards[1])? data2.student.gradeCards[1].url:"",
+                      sem3:(data2.student.gradeCards[2])? data2.student.gradeCards[2]:"",
+                      sem4:(data2.student.gradeCards[3])? data2.student.gradeCards[3]:""});
           console.log(student);
            setIsAuthentic(true);
           setLoaded(true);

@@ -26,13 +26,16 @@ export const UserContext = createContext();
 function App() {
   const [isAdmin, setIsAdmin] = useState(false);
   const [regNmbr, setRegNmbr]=useState();
+  const [authImg,setAuthImg]=useState();
+  var authImage="";
 
   return (
-    <UserContext.Provider value={{ isAdmin, setIsAdmin,regNmbr,setRegNmbr }}>
+    <UserContext.Provider value={{ isAdmin, setIsAdmin,regNmbr,setRegNmbr,authImg,setAuthImg ,authImage}}>
       <div className="app-container">
         <NavBar />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/scan" element={<Scan />} />
 
           <Route path="/codes" element={<Codes />} />
           <Route path="/report" element={<Report2 />} />

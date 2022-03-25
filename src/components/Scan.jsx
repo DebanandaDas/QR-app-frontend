@@ -102,7 +102,7 @@ const Scan = () => {
       let len= flag.length;
       let redirect = flag.substring(22,len);
       console.log(isScanned);
-      navigate(`${redirect}`);
+      navigate(`/${redirect}`);
     }
   }
   
