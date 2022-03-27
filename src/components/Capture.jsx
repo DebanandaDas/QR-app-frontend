@@ -50,11 +50,11 @@ const Capture = () => {
     <>
       <div className="contaier-fluid">
         <div className="container auth-vid-container">
-          <h3>Capture your face to authenticate</h3>
+          <h6>Capture your face to authenticate</h6>
           <ImageCapture
             onCapture={onCapture}
             onError={onError}
-            width={width > 540 ? 400 : 300}
+            width={width > 540 ? 200 : 300}
             userMediaConfig={config}
           />
           {imgSrc && (
