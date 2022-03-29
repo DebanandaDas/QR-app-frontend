@@ -7,7 +7,7 @@ const DeleteGetStud = () => {
     e.preventDefault();
     try {
       const res = await fetch(
-        `http://localhost:5000/students/regNo/${regNo}`,
+        `/students/regNo/${regNo}`,
         {
           method: "GET",
 
@@ -25,7 +25,7 @@ const DeleteGetStud = () => {
       } else {
         try {
           const res2 = await fetch(
-            `http://localhost:5000/students/${data.student._id}`,
+            `/students/${data.student._id}`,
             {
               method: 'DELETE',
               credentials: 'include',

@@ -89,7 +89,7 @@ const AddStudent = () => {
     }
     
     try{
-      const res= await fetch(`http://localhost:5000/students/putgradecard/${id}/${semno}`,{
+      const res= await fetch(`/students/putgradecard/${id}/${semno}`,{
         method: "PUT",
         credentials: 'include',
         
@@ -155,7 +155,7 @@ const AddStudent = () => {
     e.preventDefault();
     
     try{
-    const res= await fetch(`http://localhost:5000/students/createFromQueryTextParams?username=${studentState.username}&name=${studentState.name}&roll=${studentState.roll}&regNo=${studentState.regNo}&department=${studentState.department}&address=${studentState.address}&password=${studentState.password}`,{
+    const res= await fetch(`/students/createFromQueryTextParams?username=${studentState.username}&name=${studentState.name}&roll=${studentState.roll}&regNo=${studentState.regNo}&department=${studentState.department}&address=${studentState.address}&password=${studentState.password}`,{
       method: "POST",
       credentials: 'include',
       

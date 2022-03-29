@@ -20,7 +20,7 @@ const Report2 = () => {
       /* const fdata= new FormData();
       fdata.append('b64image',b64image); */
       const res = await fetch(
-        `http://localhost:5000/students/verify?username=${username}&password=${password}`,
+        `/students/verify?username=${username}&password=${password}`,
         {
 
           method: "POST",
@@ -47,7 +47,7 @@ const Report2 = () => {
         }
        else if (res.status === 200) {
         try {
-          const res2 = await fetch(`http://qrcodes-backend.herokuapp.com/students/${data.id}`, {
+          const res2 = await fetch(`/students/${data.id}`, {
             method: "GET",
             headers: {
               Accept: "appllication/json",

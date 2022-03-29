@@ -19,7 +19,7 @@ const Login = () => {
     var b64image = window.localStorage.getItem("b64image");
 
     try {
-      const res = await fetch("http://localhost:5000/admin/login", {
+      const res = await fetch("/admin/login", {
         method: "POST",
         credentials: "include",
         headers: {
