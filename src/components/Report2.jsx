@@ -20,7 +20,7 @@ const Report2 = () => {
       /* const fdata= new FormData();
       fdata.append('b64image',b64image); */
       const res = await fetch(
-        `http://localhost:5000/students/verify?username=${username}&password=${password}`,
+        `https://verify-nitdgp.herokuapp.com/students/verify?username=${username}&password=${password}`,
         {
 
           method: "POST",

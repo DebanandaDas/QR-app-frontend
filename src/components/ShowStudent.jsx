@@ -20,7 +20,7 @@ const ShowStudent = (props) => {
 
   const getStudent = async (id) => {
     try {
-      const res = await fetch(`http://localhost:5000/students/regNo/${id}`, {
+      const res = await fetch(`https://verify-nitdgp.herokuapp.com/students/regNo/${id}`, {
         method: "GET",
 
         headers: {

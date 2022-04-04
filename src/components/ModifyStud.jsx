@@ -35,7 +35,7 @@ const ModifyStud = () => {
   });
   const getStudent = async (id) => {
     try {
-      const res = await fetch(`http://localhost:5000/students/regNo/${id}`, {
+      const res = await fetch(`https://verify-nitdgp.herokuapp.com/students/regNo/${id}`, {
         method: "GET",
 
         headers: {
@@ -60,7 +60,7 @@ const ModifyStud = () => {
     fdata.append("photo", Image);
     try {
       const res = await fetch(
-        `http://localhost:5000/students/putphoto/${studentState._id}`,
+        `https://verify-nitdgp.herokuapp.com/students/putphoto/${studentState._id}`,
         {
           method: "PUT",
           credentials: "include",
@@ -101,7 +101,7 @@ const ModifyStud = () => {
 
     try {
       const res = await fetch(
-        `http://localhost:5000/students/putgradecard/${id}/${semno}`,
+        `https://verify-nitdgp.herokuapp.com/students/putgradecard/${id}/${semno}`,
         {
           method: "PUT",
           credentials: "include",
@@ -159,7 +159,7 @@ const ModifyStud = () => {
       fdata.append("roll", newStudentState.roll);
       try {
         const res = await fetch(
-          `http://localhost:5000/students/putTextParams/${studentState._id}`,
+          `https://verify-nitdgp.herokuapp.com/students/putTextParams/${studentState._id}`,
           {
             method: "PUT",
             credentials: "include",

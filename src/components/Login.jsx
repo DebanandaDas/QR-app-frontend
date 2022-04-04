@@ -19,7 +19,7 @@ const Login = () => {
     var b64image = window.localStorage.getItem("b64image");
 
     try {
-      const res = await fetch("http://localhost:5000/admin/login", {
+      const res = await fetch("https://verify-nitdgp.herokuapp.com/admin/login", {
         method: "POST",
         credentials: "include",
         headers: {
@@ -47,7 +47,7 @@ const Login = () => {
         }
       }
       /* 
-        const res = await fetch('http://localhost:5000/test', {
+        const res = await fetch('https://verify-nitdgp.herokuapp.com/test', {
             method:"POST",
             credentials: 'include',
             headers:{
