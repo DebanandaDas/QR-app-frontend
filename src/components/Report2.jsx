@@ -47,7 +47,7 @@ const Report2 = () => {
         }
        else if (res.status === 200) {
         try {
-          const res2 = await fetch(`http://qrcodes-backend.herokuapp.com/students/${data.id}`, {
+          const res2 = await fetch(`https://verify-nitdgp.herokuapp.com/students/${data.id}`, {
             method: "GET",
             headers: {
               Accept: "appllication/json",
