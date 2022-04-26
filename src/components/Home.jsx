@@ -16,20 +16,20 @@ const Home = () => {
             >
               Verify a certificate
             </NavLink>
-            <button
+            <NavLink
               className="btn btn-success"
-              type="button"
               
+            to="/AdminLogin"
             >
-              Admin login
-            </button>
-            <button
+              Admin Login
+            </NavLink>
+            <a
               className="btn btn-warning"
-              type="button"
               
+            href="https://nitdgp.ac.in" target="_blank"
             >
-              Go to college website
-            </button>
+              Visit College website
+            </a>
             
           </div>
         </div>

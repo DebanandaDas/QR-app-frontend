@@ -23,16 +23,19 @@ const NavBar2 = () => {
 
         {isAdmin === false ? (
           <NavLink
-            className="  btn btn-success login-btn"
+            className=" btn btn-success login-btn"
             
             to="/AdminLogin"
           >
             Admin login
           </NavLink>
         ) : (
+          <>
+          
           <NavLink className="  btn btn-success login-btn" to="/AdminLogin">
             Logout
           </NavLink>
+          </>
         )}
       </nav>
     </>

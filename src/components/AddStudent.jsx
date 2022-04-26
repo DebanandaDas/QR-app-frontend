@@ -199,7 +199,7 @@ const AddStudent = () => {
             <div className="col-md-12 img-row">
               <div className="img-div">
 
-              <img className="img-box" src={(Image) ? Image: addStudentImg}  alt="studentImg" />
+              <img className="img-box" src={(Image) ? URL.createObjectURL(Image): addStudentImg}  alt="studentImg" />
               </div>
               
             </div>
